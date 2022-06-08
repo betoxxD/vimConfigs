@@ -1,0 +1,18 @@
+{
+  "javascript.suggest.autoImports": true,
+  "typescript.suggest.autoImports": true,
+  "coc.preferences.formatOnSaveFileTypes": [
+    "c",
+    "cpp",
+    "cxx",
+    "cs",
+    "css",
+    "scss",
+    "java",
+    "js",
+    "ts",
+    "php",
+    "py",
+    "sh"
+  ]
+}
