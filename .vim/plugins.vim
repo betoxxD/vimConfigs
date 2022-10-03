@@ -46,7 +46,4 @@ Plug 'tpope/vim-repeat'
 " Prettier
 Plug 'prettier/vim-prettier', { 'do': 'npm install --frozen-lockfile --production' }
 
-" Copilot
-Plug 'github/copilot.vim'
-
 call plug#end()
