@@ -6,8 +6,8 @@ nnoremap <Leader>T :TestFile<CR>
 nnoremap <Leader>TT :TestSuite<CR>
 
 " split resize
-" nnoremap <Leader>> 10<C-w>>
-" nnoremap <Leader>< 10<C-w><
+ nnoremap <Leader>> 10<C-w>>
+ nnoremap <Leader>< 10<C-w><
 
 " quick semi
 nnoremap <Leader>; $a;<Esc>
@@ -315,17 +315,27 @@ let g:split_term_resize_cmd = 'resize 6'
 " (or let g:split_term_resize_cmd = 'vertical resize 40')
 "
 " Autocomplete
-inoremap <silent><expr> <TAB>
-    \ coc#pum#visible() ? coc#_select_confirm() :
-    \ coc#expandableOrJumpable() ?
-    \ "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
-    \ CheckBackSpace() ? "\<TAB>" :
-    \ coc#refresh()
+" Use <Tab> and <S-Tab> for navigate completion list
+inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>" 
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
-  function! CheckBackSpace() abort
-    let col = col('.') - 1
-    return !col || getline('.')[col - 1]  =~# '\s'
-  endfunction
+" Make <CR> to accept selected completion item or notify coc.nvim to format
+" <C-g>u breaks current undo, please make your own choice.
+inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
+                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
-  let g:coc_snippet_next = '<tab>'
+function! CheckBackspace() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+" Use <c-space> to trigger completion.
+if has('nvim')
+  inoremap <silent><expr> <c-space> coc#refresh()
+else
+  inoremap <silent><expr> <c-@> coc#refresh()
+endif
+
+" Disable tab on Ultisnips to get work on coc.nvim
+let g:UltiSnipsExpandTrigger = "<nop>"
 
