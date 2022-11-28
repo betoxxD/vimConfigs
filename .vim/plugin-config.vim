@@ -36,7 +36,7 @@ let NERDTreeMapOpenInTab='\t'
 
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
 let g:UltiSnipsSnippetDirectories=[$HOME.'/configs/.vim/UltiSnips']
-let g:UltiSnipsExpandTrigger="<tab>"
+" let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsListSnippets="<C-_>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<S-tab>"
@@ -44,7 +44,9 @@ let g:UltiSnipsJumpBackwardTrigger="<S-tab>"
 " kite
 "let g:kite_supported_languages = ['*']
 let g:coc_global_extensions = [
-      \ 'coc-tsserver'
+      \ 'coc-tsserver',
+      \ 'coc-clangd',
+      \ 'coc-css'
       \ ]
 " tmux navigator
 " let g:tmux_navigator_no_mappings = 1
