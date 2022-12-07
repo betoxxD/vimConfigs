@@ -46,7 +46,8 @@ let g:UltiSnipsJumpBackwardTrigger="<S-tab>"
 let g:coc_global_extensions = [
       \ 'coc-tsserver',
       \ 'coc-clangd',
-      \ 'coc-css'
+      \ 'coc-css',
+      \ 'coc-java'
       \ ]
 " tmux navigator
 " let g:tmux_navigator_no_mappings = 1

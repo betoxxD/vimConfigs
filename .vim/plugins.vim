@@ -1,5 +1,8 @@
 call plug#begin('~/.vim/plugged')
 
+" Themes
+Plug 'dracula/vim', { 'as': 'dracula' }
+
 " syntax
 Plug 'sheerun/vim-polyglot'
 Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
@@ -17,8 +20,8 @@ Plug 'alvan/vim-closetag'
 Plug 'tpope/vim-surround'
 
 " tmux
- Plug 'benmills/vimux'
-" Plug 'christoomey/vim-tmux-navigator'
+" Plug 'benmills/vimux'
+Plug 'christoomey/vim-tmux-navigator'
 
 " autocomplete
 Plug 'sirver/ultisnips'

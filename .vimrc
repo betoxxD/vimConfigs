@@ -1,4 +1,3 @@
-let g:gruvbox_contrast_dark = "hard"
 set number
 set mouse=a
 set numberwidth=1
@@ -16,7 +15,8 @@ so ~/.config/.vim/maps.vim
 set laststatus=2
 set noshowmode
 
-colorscheme nord
+colorscheme dracula
+set termguicolors
 "" Searching
 set hlsearch                    " highlight matches
 set incsearch                   " incremental searching
