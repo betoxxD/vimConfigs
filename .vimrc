@@ -15,7 +15,7 @@ so ~/.config/.vim/maps.vim
 set laststatus=2
 set noshowmode
 
-colorscheme dracula
+colorscheme nord
 set termguicolors
 "" Searching
 set hlsearch                    " highlight matches

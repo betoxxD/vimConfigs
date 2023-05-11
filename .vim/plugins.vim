@@ -1,7 +1,8 @@
 call plug#begin('~/.vim/plugged')
 
 " Themes
-Plug 'dracula/vim', { 'as': 'dracula' }
+" Plug 'dracula/vim', { 'as': 'dracula' }
+Plug 'arcticicestudio/nord-vim'
 
 " syntax
 Plug 'sheerun/vim-polyglot'
