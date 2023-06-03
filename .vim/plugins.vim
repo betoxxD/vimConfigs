@@ -9,9 +9,6 @@ Plug 'sheerun/vim-polyglot'
 Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
 Plug 'norcalli/nvim-colorizer.lua'
 
-" Themes
-Plug 'arcticicestudio/nord-vim'
-
 " Tree
 Plug 'scrooloose/nerdtree'
 
@@ -47,7 +44,8 @@ Plug 'tpope/vim-fugitive'
 
 Plug 'tpope/vim-repeat'
 
-" Prettier
+" formatter
 Plug 'prettier/vim-prettier', { 'do': 'npm install --frozen-lockfile --production' }
+Plug 'vim-autoformat/vim-autoformat'
 
 call plug#end()

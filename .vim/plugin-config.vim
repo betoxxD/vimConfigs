@@ -136,4 +136,5 @@ let $FZF_DEFAULT_OPTS='--layout=reverse'
 " Prettier
 let g:prettier#config#tab_width = 2
 let g:prettier#config#use_tabs = 'false'
+au BufWrite * :Autoformat
 
