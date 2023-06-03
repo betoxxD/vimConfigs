@@ -6,8 +6,8 @@ nnoremap <Leader>T :TestFile<CR>
 nnoremap <Leader>TT :TestSuite<CR>
 
 " split resize
- nnoremap <Leader>> 10<C-w>>
- nnoremap <Leader>< 10<C-w><
+nnoremap <Leader>> 10<C-w>>
+nnoremap <Leader>< 10<C-w><
 
 " quick semi
 nnoremap <Leader>; $a;<Esc>
@@ -120,13 +120,13 @@ function! ParensIndent()
   let prevChar = matchstr(getline('.'), '\%' . prev . 'c.')
   let afterChar = matchstr(getline('.'), '\%' . after . 'c.')
   if (prevChar == '"' && afterChar == '"') ||
-\    (prevChar == "'" && afterChar == "'") ||
-\    (prevChar == "(" && afterChar == ")") ||
-\    (prevChar == "{" && afterChar == "}") ||
-\    (prevChar == "[" && afterChar == "]")
+        \    (prevChar == "'" && afterChar == "'") ||
+        \    (prevChar == "(" && afterChar == ")") ||
+        \    (prevChar == "{" && afterChar == "}") ||
+        \    (prevChar == "[" && afterChar == "]")
     return "\<CR>\<ESC>O"
   endif
-  
+
   return "\<CR>"
 endfunction
 
@@ -138,13 +138,13 @@ function! ParensSpacing()
   let prevChar = matchstr(getline('.'), '\%' . prev . 'c.')
   let afterChar = matchstr(getline('.'), '\%' . after . 'c.')
   if (prevChar == '"' && afterChar == '"') ||
-\    (prevChar == "'" && afterChar == "'") ||
-\    (prevChar == "(" && afterChar == ")") ||
-\    (prevChar == "{" && afterChar == "}") ||
-\    (prevChar == "[" && afterChar == "]")
+        \    (prevChar == "'" && afterChar == "'") ||
+        \    (prevChar == "(" && afterChar == ")") ||
+        \    (prevChar == "{" && afterChar == "}") ||
+        \    (prevChar == "[" && afterChar == "]")
     return "\<space>\<space>\<left>"
   endif
-  
+
   return "\<space>"
 endfunction
 
@@ -157,27 +157,27 @@ function! ParensRemoveSpacing()
   let afterChar = matchstr(getline('.'), '\%' . after . 'c.')
 
   if (prevChar == '"' && afterChar == '"') ||
-\    (prevChar == "'" && afterChar == "'") ||
-\    (prevChar == "(" && afterChar == ")") ||
-\    (prevChar == "{" && afterChar == "}") ||
-\    (prevChar == "[" && afterChar == "]")
+        \    (prevChar == "'" && afterChar == "'") ||
+        \    (prevChar == "(" && afterChar == ")") ||
+        \    (prevChar == "{" && afterChar == "}") ||
+        \    (prevChar == "[" && afterChar == "]")
     return "\<bs>\<right>\<bs>"
   endif
-  
+
   if (prevChar == ' ' && afterChar == ' ')
     let prev = col('.') - 2
     let after = col('.') + 1
     let prevChar = matchstr(getline('.'), '\%' . prev . 'c.')
     let afterChar = matchstr(getline('.'), '\%' . after . 'c.')
     if (prevChar == '"' && afterChar == '"') ||
-  \    (prevChar == "'" && afterChar == "'") ||
-  \    (prevChar == "(" && afterChar == ")") ||
-  \    (prevChar == "{" && afterChar == "}") ||
-  \    (prevChar == "[" && afterChar == "]")
+          \    (prevChar == "'" && afterChar == "'") ||
+          \    (prevChar == "(" && afterChar == ")") ||
+          \    (prevChar == "{" && afterChar == "}") ||
+          \    (prevChar == "[" && afterChar == "]")
       return "\<bs>\<right>\<bs>"
     endif
   endif
-  
+
   return "\<bs>"
 endfunction
 
@@ -208,7 +208,7 @@ inoremap <expr> ` CheckNextQuote(bticks)
 function CheckNextQuote(c)
   let after = col('.')
   let afterChar = matchstr(getline('.'), '\%' . after . 'c.')
-  
+
   if (afterChar == a:c)
     return "\<right>"
   endif
@@ -239,11 +239,11 @@ endfunction
 " Compile cpp projects
 " for detecting OS
 if !exists("g:os")
-    if has("win64") || has("win32") || has("win16")
-        let g:os = "Windows"
-    else
-        let g:os = substitute(system('uname'), '\n', '', '')
-    endif
+  if has("win64") || has("win32") || has("win16")
+    let g:os = "Windows"
+  else
+    let g:os = substitute(system('uname'), '\n', '', '')
+  endif
 endif
 
 " important option that should already be set!
@@ -253,23 +253,23 @@ set hidden
 " * g:split_term_style
 " * g:split_term_resize_cmd
 function! TermWrapper(command) abort
-	if !exists('g:split_term_style') | let g:split_term_style = 'vertical' | endif
-	if g:split_term_style ==# 'vertical'
-		let buffercmd = 'vnew'
-	elseif g:split_term_style ==# 'horizontal'
-		let buffercmd = 'new'
-	else
-		echoerr 'ERROR! g:split_term_style is not a valid value (must be ''horizontal'' or ''vertical'' but is currently set to ''' . g:split_term_style . ''')'
-		throw 'ERROR! g:split_term_style is not a valid value (must be ''horizontal'' or ''vertical'')'
-	endif
-	exec buffercmd
-	if exists('g:split_term_resize_cmd')
-		exec g:split_term_resize_cmd
-	endif
-	exec 'term ' . a:command
-	exec 'setlocal nornu nonu'
-	exec 'startinsert'
-	autocmd BufEnter <buffer> startinsert
+  if !exists('g:split_term_style') | let g:split_term_style = 'vertical' | endif
+  if g:split_term_style ==# 'vertical'
+    let buffercmd = 'vnew'
+  elseif g:split_term_style ==# 'horizontal'
+    let buffercmd = 'new'
+  else
+    echoerr 'ERROR! g:split_term_style is not a valid value (must be ''horizontal'' or ''vertical'' but is currently set to ''' . g:split_term_style . ''')'
+    throw 'ERROR! g:split_term_style is not a valid value (must be ''horizontal'' or ''vertical'')'
+  endif
+  exec buffercmd
+  if exists('g:split_term_resize_cmd')
+    exec g:split_term_resize_cmd
+  endif
+  exec 'term ' . a:command
+  exec 'setlocal nornu nonu'
+  exec 'startinsert'
+  autocmd BufEnter <buffer> startinsert
 endfunction
 
 command! -nargs=0 CompileAndRun call TermWrapper(printf('g++ -std=c++11 %s && ./a.out', expand('%')))
@@ -282,13 +282,13 @@ autocmd FileType cpp nnoremap <leader>fw :CompileAndRun<CR>
 " NOTE: this version is more stable than the other version with specified
 " output executable!
 augroup CppToolkit
-	autocmd!
-	if g:os == 'Darwin'
-		autocmd FileType cpp nnoremap <leader>fn :!g++ -std=c++11 -o %:r % && open -a Terminal './a.out'<CR>
-	endif
-	autocmd FileType cpp nnoremap <leader>fb :!g++ -std=c++11 % && ./a.out<CR>
-	autocmd FileType cpp nnoremap <leader>fr :!./a.out<CR>
-	autocmd FileType cpp nnoremap <leader>fw :CompileAndRun<CR>
+  autocmd!
+  if g:os == 'Darwin'
+    autocmd FileType cpp nnoremap <leader>fn :!g++ -std=c++11 -o %:r % && open -a Terminal './a.out'<CR>
+  endif
+  autocmd FileType cpp nnoremap <leader>fb :!g++ -std=c++11 % && ./a.out<CR>
+  autocmd FileType cpp nnoremap <leader>fr :!./a.out<CR>
+  autocmd FileType cpp nnoremap <leader>fw :CompileAndRun<CR>
 augroup END
 
 " For those of you that like to use -o and a specific outfile executable
@@ -296,12 +296,12 @@ augroup END
 " This C++ toolkit gives you commands to compile and/or run in different types
 " of terminals for your own preference.
 augroup CppToolkit
-	autocmd!
-	if g:os == 'Darwin'
-		autocmd FileType cpp nnoremap <leader>fn :!g++ -std=c++11 -o %:r % && open -a Terminal './%:r'<CR>
-	endif
-	autocmd FileType cpp nnoremap <leader>fb :!g++ -std=c++11 -o %:r % && ./%:r<CR>
-	autocmd FileType cpp nnoremap <leader>fr :!./%:r.out<CR>
+  autocmd!
+  if g:os == 'Darwin'
+    autocmd FileType cpp nnoremap <leader>fn :!g++ -std=c++11 -o %:r % && open -a Terminal './%:r'<CR>
+  endif
+  autocmd FileType cpp nnoremap <leader>fb :!g++ -std=c++11 -o %:r % && ./%:r<CR>
+  autocmd FileType cpp nnoremap <leader>fr :!./%:r.out<CR>
 augroup END
 
 " options
@@ -311,18 +311,18 @@ let g:split_term_style = 'horizontal'
 
 " add a custom command to resize the terminal window to your preference
 " (default is to split the screen equally)
-let g:split_term_resize_cmd = 'resize 6'
+let g:split_term_resize_cmd = 'resize 30'
 " (or let g:split_term_resize_cmd = 'vertical resize 40')
 "
 " Autocomplete
 " Use <Tab> and <S-Tab> for navigate completion list
-inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>" 
+inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
 " Make <CR> to accept selected completion item or notify coc.nvim to format
 " <C-g>u breaks current undo, please make your own choice.
 inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
-                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+      \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
 function! CheckBackspace() abort
   let col = col('.') - 1
